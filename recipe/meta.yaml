@@ -1,0 +1,46 @@
+{% set name = "intake-bluesky" %}
+{% set version = "0.1.0a10" %}
+{% set sha256 = "2ef9f34cda637631e3f0d90ae65fc3cb040eff5a27b1695563964568e895e2a0" %}
+{% set setup_py = load_setup_py_data() %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/bluesky/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python
+    - pip
+
+  run:
+    - python
+    - dask
+    - event-model >=1.8.0
+    - intake !=0.5.0
+    - intake-xarray
+    - mongoquery
+    - msgpack-numpy
+    - msgpack-numpy  # to be split into extras or a separate package
+    - msgpack-python
+    - numpy
+    - pandas
+    - pymongo  # to be split into extras or a separate package
+    - pyyaml  # undeclared by intake v0.4.1
+    - requests
+    - xarray
+
+about:
+  home: https://github.com/bluesky/intake-bluesky
+  license: {{ setup_py.get('license') }}
+  license_file: LICENSE
+  summary: {{ setup_py.get('description') }}
+  doc_url: https://nsls-ii.github.io/intake-bluesky/
