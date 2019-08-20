@@ -29,7 +29,6 @@ requirements:
     - intake-xarray
     - mongoquery
     - msgpack-numpy
-    - msgpack-numpy  # to be split into extras or a separate package
     - msgpack-python
     - numpy
     - pandas
